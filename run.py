@@ -36,4 +36,22 @@ def get_random_words():
     return random_word.upper()
 
 
+def start_game():
+    """
+    Gets a username from the player to start game.
+    Validates the username to be letters only.
+    Tells the rules of the game to the user.
+    """
+
+    while True:
+        username = input("Please enter a username to play: ")
+        if username.isalpha() and len(username) >= 3 and len(username) <= 10:
+            break
+        else:
+            print("Username need to be letters and between 3-10 characters\n")
+
+    print(f"Hello {username}! Let's start the game\n")
+
+
 get_random_words()
+start_game()
