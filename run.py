@@ -31,8 +31,7 @@ def get_random_words():
     Picks a random word from the words list.
     Displays it to user in uppercase letters.
     """
-    random_word = random.choice(words).upper()
-    print(random_word)
+    random_word = random.choice(words)
     return random_word.upper()
 
 
@@ -53,5 +52,42 @@ def start_game():
     print(f"Hello {username}! Let's start the game\n")
 
 
-get_random_words()
-start_game()
+def play_hangman(random_word):
+    """
+    Once the game has started, displays the words for user.
+    Let's the user play until lives are finished.
+    Checks users guesses and adds it to a list of words or letters.
+    """
+    full_word = random_word
+    lives = 6
+    player_won = False
+    game_over = False
+    correct_guess = []
+    incorrect_guess = []
+
+    while not game_over:
+        word = ''
+        for letter in full_word:
+            if letter in correct_guess:
+                word += letter
+            else:
+                word += "_"
+
+        print(word)
+
+        if "_" not in word:
+            player_won = True
+            game_over = True
+        break
+
+
+def main():
+    """
+    Calls all the functions
+    """
+    random_word = get_random_words()
+    start_game()
+    play_hangman(random_word)
+
+
+main()
