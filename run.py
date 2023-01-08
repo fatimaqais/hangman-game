@@ -65,7 +65,7 @@ def play_hangman(random_word):
     correct_guess = []
     incorrect_guess = []
 
-    while not game_over:
+    while not game_over and lives > 0:
         word = ''
         for letter in full_word:
             if letter in correct_guess:
@@ -74,11 +74,37 @@ def play_hangman(random_word):
                 word += "_"
 
         print(word)
+        print(display_hangman(lives))
 
         if "_" not in word:
             player_won = True
             game_over = True
-        break
+
+        guess = input("Please guess the letter or word: ").upper()
+
+        if guess.isalpha() and len(guess) == 1:
+            if guess in correct_guess or guess in incorrect_guess:
+                print("You already guess that letter")
+            elif guess not in full_word:
+                print(guess, "is not in the word")
+                incorrect_guess.append(guess)
+                lives -= 1
+            else:
+                print("Great! you made a correct guess")
+                correct_guess.append(guess)
+                if "_" not in word:
+                    game_over = True
+        elif guess.isalpha() and guess == full_word:
+            if guess in incorrect_guess:
+                print("You already guessed this word")
+                lives -= 1
+            else:
+                print("Congartulations, You guessed the correct word!")
+                correct_guess.append(guess)
+                game_over = True
+                player_won = True
+        else:
+            print("Please make a valid guess")
 
 
 def display_hangman(lives):
