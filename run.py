@@ -41,7 +41,6 @@ def start_game():
     Validates the username to be letters only.
     Tells the rules of the game to the user.
     """
-
     while True:
         username = input("Please enter a username to play: ")
         if username.isalpha() and len(username) >= 3 and len(username) <= 10:
@@ -50,6 +49,7 @@ def start_game():
             print("Username need to be letters and between 3-10 characters\n")
 
     print(f"Hello {username}! Let's start the game\n")
+    print("Please select an option:")
 
 
 def play_hangman(random_word):
@@ -59,6 +59,8 @@ def play_hangman(random_word):
     Checks users guesses and adds it to a list of words or letters.
     """
     full_word = random_word
+    # for debugging
+    print(full_word)
     lives = 6
     player_won = False
     game_over = False
@@ -72,19 +74,18 @@ def play_hangman(random_word):
                 word += letter
             else:
                 word += "_"
-
         print(word)
-        print(display_hangman(lives))
 
         if "_" not in word:
-            player_won = True
             game_over = True
+            player_won = True
+            break
 
-        guess = input("Please guess the letter or word: ").upper()
+        guess = input("Guess a letter or word: ").upper()
 
         if guess.isalpha() and len(guess) == 1:
             if guess in correct_guess or guess in incorrect_guess:
-                print("You already guess that letter")
+                print("You already guessed that letter")
             elif guess not in full_word:
                 print(guess, "is not in the word")
                 incorrect_guess.append(guess)
@@ -92,9 +93,7 @@ def play_hangman(random_word):
             else:
                 print("Great! you made a correct guess")
                 correct_guess.append(guess)
-                if "_" not in word:
-                    game_over = True
-        elif guess.isalpha() and guess == full_word:
+        elif guess.isalpha() and len(guess) == len(full_word):
             if guess in incorrect_guess:
                 print("You already guessed this word")
                 lives -= 1
@@ -105,6 +104,14 @@ def play_hangman(random_word):
                 player_won = True
         else:
             print("Please make a valid guess")
+
+        print(display_hangman(lives))
+        print("Incorrect guesses: ", incorrect_guess)
+
+    if player_won:
+        print("You won!")
+    else:
+        print("You lost! The correct word was: " + full_word)
 
 
 def display_hangman(lives):
@@ -190,9 +197,10 @@ def display_hangman(lives):
 def main():
     """
     Calls all the functions
+    Keeps the game running
     """
-    random_word = get_random_words()
     start_game()
+    random_word = get_random_words()
     play_hangman(random_word)
 
 
