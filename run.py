@@ -1,4 +1,5 @@
 import random
+import os
 
 import gspread
 from google.oauth2.service_account import Credentials
@@ -33,6 +34,14 @@ def get_random_words():
     """
     random_word = random.choice(words)
     return random_word.upper()
+
+
+def clear_terminal():
+    """
+    Code found on stack overflow
+    Clears the terminal if it gets too crowded
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def start_game():
@@ -112,6 +121,7 @@ def play_hangman(random_word):
         print("You won! Thank you for playing \n")
         keep_playing = input("Would you like to keep playing? Y/N: ").upper()
         while keep_playing == "Y":
+            clear_terminal()
             random_word = get_random_words()
             play_hangman(random_word)
             break
