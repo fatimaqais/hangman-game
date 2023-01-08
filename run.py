@@ -109,9 +109,14 @@ def play_hangman(random_word):
         print("Incorrect guesses: ", incorrect_guess)
 
     if player_won:
-        print("You won!")
+        print("You won! Thank you for playing \n")
+        keep_playing = input("Would you like to keep playing? Y/N: ").upper()
+        while keep_playing == "Y":
+            random_word = get_random_words()
+            play_hangman(random_word)
+            break
     else:
-        print("You lost! The correct word was: " + full_word)
+        print("Sorry, you lost! The correct word was: " + full_word)
 
 
 def display_hangman(lives):
