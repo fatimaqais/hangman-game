@@ -15,15 +15,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_game')
 
+score = SHEET.worksheet('userscores')
+points = 0
+
 
 def leader_board():
     """
     Display the user scores
     """
-    score = SHEET.worksheet('userscores')
-
     data = score.get_all_values()
-
     print(data)
 
 
@@ -56,6 +56,8 @@ def username_validator():
     Checks if the username is 3-10 characters long.
     Only accepts letters ad dispays error message if requirements don't match
     """
+    global username
+    username = ''
     while True:
         username = input("Please enter a username to play: ")
         if username.isalpha() and len(username) >= 3 and len(username) <= 10:
@@ -64,8 +66,8 @@ def username_validator():
         else:
             print("Username need to be letters and between 3-10 characters")
 
-    random_word = get_random_words()
-    play_hangman(random_word)
+    play_hangman()
+    return username
 
 
 def start_game():
@@ -97,12 +99,13 @@ def start_game():
         start_game()
 
 
-def play_hangman(random_word):
+def play_hangman():
     """
     Once the game has started, displays the words for user.
     Let's the user play until lives are finished.
     Checks users guesses and adds it to a list of words or letters.
     """
+    random_word = get_random_words()
     full_word = random_word
     # for debugging
     print(full_word)
@@ -111,6 +114,7 @@ def play_hangman(random_word):
     game_over = False
     correct_guess = []
     incorrect_guess = []
+    global points
 
     while not game_over and lives > 0:
         word = ''
@@ -120,6 +124,8 @@ def play_hangman(random_word):
             else:
                 word += "_"
         print(word)
+        print(display_hangman(lives))
+        print("Incorrect guesses: ", incorrect_guess)
 
         if "_" not in word:
             game_over = True
@@ -150,21 +156,29 @@ def play_hangman(random_word):
         else:
             print("Please make a valid guess")
 
-        print(display_hangman(lives))
-        print("Incorrect guesses: ", incorrect_guess)
-
     if player_won:
         print("You won! \n")
+        points += 10
+        print(f"Total score: {points}")
         keep_playing = input("Would you like to keep playing? Y/N: ").upper()
         while keep_playing == "Y":
             clear_terminal()
             random_word = get_random_words()
-            play_hangman(random_word)
+            play_hangman()
             break
         if keep_playing == "N":
             print("Thank you for playing!")
     else:
         print("Sorry, you lost! The correct word was: " + full_word)
+        print(f"Total score: {points}")
+
+
+def update_leaderboard():
+    """
+    Updates the score sheet with total score
+    """
+    update = [username, points]
+    score.insert_row(update, 2)
 
 
 def end_game():
@@ -263,6 +277,8 @@ def main():
     Calls the function to start the game
     """
     start_game()
+    leader_board()
+    update_leaderboard()
 
 
 main()
