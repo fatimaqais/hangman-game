@@ -78,21 +78,22 @@ def start_game():
     print("Please select an option: 1, 2 or 3\n")
     print("1.Start Game\n2.Rules \n3.Highscores \n")
     option = int(input("Enter a number: "))
-    print("\n")
     if option == 1:
+        print("Starting game...")
         username_validator()
     elif option == 2:
         print("1. You will be given a random word to guess.")
-        print("The blank lines '_' show how many letters are missing")
-        print("2. You have 6 lives to guess the word.")
+        print("The blank lines '_' show how many letters are missing.\n")
+        print("2. You can either guess a letter or the full word.\n")
+        print("3. You have 6 lives to guess the word.")
         print("Every wrong guess deducts a life\n")
-        print("3. Each word you guess correctly scores you 10 points\n")
+        print("4. Each word you guess correctly scores you 10 points\n")
         end_game()
     elif option == 3:
         leader_board()
         end_game()
     else:
-        print("Please enter a valid number")
+        print("Please enter a valid number \n")
         start_game()
 
 
@@ -153,13 +154,15 @@ def play_hangman(random_word):
         print("Incorrect guesses: ", incorrect_guess)
 
     if player_won:
-        print("You won! Thank you for playing \n")
+        print("You won! \n")
         keep_playing = input("Would you like to keep playing? Y/N: ").upper()
         while keep_playing == "Y":
             clear_terminal()
             random_word = get_random_words()
             play_hangman(random_word)
             break
+        if keep_playing == "N":
+            print("Thank you for playing!")
     else:
         print("Sorry, you lost! The correct word was: " + full_word)
 
@@ -172,7 +175,7 @@ def end_game():
         print("Starting game... \n")
         username_validator()
     else:
-        print("Thankyou for playing")
+        print("Thankyou for playing!")
 
 
 def display_hangman(lives):
