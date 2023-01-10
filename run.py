@@ -15,11 +15,17 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_game')
 
-score = SHEET.worksheet('userscores')
 
-data = score.get_all_values()
+def leader_board():
+    """
+    Display the user scores
+    """
+    score = SHEET.worksheet('userscores')
 
-print(data)
+    data = score.get_all_values()
+
+    print(data)
+
 
 words = ['sad', 'happy', 'excited', 'lucky', 'swimming', 'jump', 'running',
          'climbing', 'movie', 'music', 'dancing', 'apple', 'banana', 'oranges',
@@ -44,21 +50,45 @@ def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def usename_validator():
+    """
+    Checks the user entered a valid username.
+    Checks if the username is 3-10 characters long.
+    Only accepts letters ad dispays error message if requirements don't match
+    """
+    while True:
+        username = input("Please enter a username to play: ")
+        if username.isalpha() and len(username) >= 3 and len(username) <= 10:
+            print(f"Hello {username}! Let's start the game\n")
+            break
+        else:
+            print("Username need to be letters and between 3-10 characters")
+
+
 def start_game():
     """
     Gets a username from the player to start game.
     Validates the username to be letters only.
     Tells the rules of the game to the user.
     """
-    while True:
-        username = input("Please enter a username to play: ")
-        if username.isalpha() and len(username) >= 3 and len(username) <= 10:
-            break
-        else:
-            print("Username need to be letters and between 3-10 characters\n")
-
-    print(f"Hello {username}! Let's start the game\n")
-    print("Please select an option:")
+    print("Welcome to a game of hangman! \n")
+    print("Please select an option: 1, 2 or 3\n")
+    print("1.Start Game\n2.Rules \n3.Highscores \n")
+    option = int(input("Enter a number: "))
+    print("\n")
+    if option == 1:
+        usename_validator()
+    elif option == 2:
+        print("1. You will be given a random word to guess.")
+        print("The blank lines '_' show how many letters are missing")
+        print("2. You have 6 lives to guess the word.")
+        print("Every wrong guess deducts a life\n")
+        print("3. Each word you guess correctly scores you 10 points\n")
+    elif option == 3:
+        leader_board()
+    else:
+        print("Please enter a valid number")
+        start_game()
 
 
 def play_hangman(random_word):
