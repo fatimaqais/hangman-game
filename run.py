@@ -50,7 +50,7 @@ def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def usename_validator():
+def username_validator():
     """
     Checks the user entered a valid username.
     Checks if the username is 3-10 characters long.
@@ -63,6 +63,9 @@ def usename_validator():
             break
         else:
             print("Username need to be letters and between 3-10 characters")
+
+    random_word = get_random_words()
+    play_hangman(random_word)
 
 
 def start_game():
@@ -77,15 +80,17 @@ def start_game():
     option = int(input("Enter a number: "))
     print("\n")
     if option == 1:
-        usename_validator()
+        username_validator()
     elif option == 2:
         print("1. You will be given a random word to guess.")
         print("The blank lines '_' show how many letters are missing")
         print("2. You have 6 lives to guess the word.")
         print("Every wrong guess deducts a life\n")
         print("3. Each word you guess correctly scores you 10 points\n")
+        end_game()
     elif option == 3:
         leader_board()
+        end_game()
     else:
         print("Please enter a valid number")
         start_game()
@@ -157,6 +162,17 @@ def play_hangman(random_word):
             break
     else:
         print("Sorry, you lost! The correct word was: " + full_word)
+
+
+def end_game():
+    """
+    Gisves the user option to start game or quit.
+    """
+    if input("Would you like to start game? Y/N:").upper() == "Y":
+        print("Starting game... \n")
+        username_validator()
+    else:
+        print("Thankyou for playing")
 
 
 def display_hangman(lives):
@@ -241,12 +257,9 @@ def display_hangman(lives):
 
 def main():
     """
-    Calls all the functions
-    Keeps the game running
+    Calls the function to start the game
     """
     start_game()
-    random_word = get_random_words()
-    play_hangman(random_word)
 
 
 main()
