@@ -19,15 +19,6 @@ score = SHEET.worksheet('userscores')
 points = 0
 
 
-def leader_board():
-    """
-    Display the user scores
-    """
-    score.sort((2, 'des'))
-    data = score.get('A2:B6')
-    print(data)
-
-
 words = ['sad', 'happy', 'excited', 'lucky', 'swimming', 'jump', 'running',
          'climbing', 'movie', 'music', 'dancing', 'apple', 'banana', 'oranges',
          'mango', 'pineapple', 'guava', 'lemon', 'watermelon', 'strawberry',
@@ -80,11 +71,12 @@ def start_game():
     print("Welcome to a game of hangman! \n")
     print("Please select an option: 1, 2 or 3\n")
     print("1.Start Game\n2.Rules \n3.Highscores \n")
-    option = int(input("Enter a number: "))
-    if option == 1:
+    option = input("Enter a number: ")
+    print("\n")
+    if option == '1':
         print("Starting game...")
         username_validator()
-    elif option == 2:
+    elif option == '2':
         print("1. You will be given a random word to guess.")
         print("The blank lines '_' show how many letters are missing.\n")
         print("2. You can either guess a letter or the full word.\n")
@@ -92,7 +84,7 @@ def start_game():
         print("Every wrong guess deducts a life\n")
         print("4. Each word you guess correctly scores you 10 points\n")
         end_game()
-    elif option == 3:
+    elif option == '3':
         leader_board()
         end_game()
     else:
@@ -173,9 +165,11 @@ def play_hangman():
         if keep_playing == "N":
             print("Thank you for playing!")
             update_leaderboard()
+            leader_board()
     else:
         print("Sorry, you lost! The correct word was: " + full_word)
         print(f"Total score: {points}")
+        leader_board()
 
 
 def update_leaderboard():
@@ -184,6 +178,15 @@ def update_leaderboard():
     """
     update = [username, points]
     score.insert_row(update, 2)
+
+
+def leader_board():
+    """
+    Display the user scores
+    """
+    score.sort((2, 'des'))
+    data = score.get('A2:B6')
+    print(data)
 
 
 def end_game():
@@ -282,7 +285,6 @@ def main():
     Calls the function to start the game
     """
     start_game()
-    leader_board()
 
 
 main()
