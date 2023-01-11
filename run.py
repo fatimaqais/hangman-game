@@ -146,14 +146,17 @@ def play_hangman():
                 print("Great! you made a correct guess")
                 correct_guess.append(guess)
         elif guess.isalpha() and len(guess) == len(full_word):
-            if guess in incorrect_guess:
-                print("You already guessed this word")
-                lives -= 1
-            else:
+            if guess == full_word:
                 print("Congartulations, You guessed the correct word!")
                 correct_guess.append(guess)
                 game_over = True
                 player_won = True
+            elif guess in incorrect_guess:
+                print("You already guessed this word")
+            else:
+                print("Incorrect guess")
+                incorrect_guess.append(guess)
+                lives -= 1
         else:
             print("Please make a valid guess")
 
