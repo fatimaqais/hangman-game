@@ -19,10 +19,13 @@ score = SHEET.worksheet('userscores')
 points = 0
 
 
-words = ['sad', 'happy', 'excited', 'lucky', 'swimming', 'jump', 'running',
+words = ['happy', 'excited', 'lucky', 'swimming', 'jump', 'running',
          'climbing', 'movie', 'music', 'dancing', 'apple', 'banana', 'oranges',
          'mango', 'pineapple', 'guava', 'lemon', 'watermelon', 'strawberry',
-         'building', 'mountain', 'river', 'trees', 'tiger', 'lion', 'elephant']
+         'building', 'mountain', 'river', 'trees', 'tiger', 'lion', 'elephant',
+         'awkward', 'python', 'umbrella', 'juice', 'camera', 'glasses',
+         'notebook', 'laptop', 'toothbrush', 'magazine', 'headphone', 'boat'
+         'calculator', 'balloon', 'battery', 'tissue', 'computer', 'scissors']
 
 
 def get_random_words():
@@ -68,7 +71,6 @@ def start_game():
     Validates the username to be letters only.
     Tells the rules of the game to the user.
     """
-    print("Welcome to a game of hangman! \n")
     print("Please select an option: 1, 2 or 3\n")
     print("1.Start Game\n2.Rules \n3.Highscores \n")
     option = input("Enter a number: ")
@@ -100,8 +102,6 @@ def play_hangman():
     """
     random_word = get_random_words()
     full_word = random_word
-    # for debugging
-    print(full_word)
     lives = 6
     player_won = False
     game_over = False
@@ -116,15 +116,17 @@ def play_hangman():
                 word += letter
             else:
                 word += "_"
-        print(word)
-        print(display_hangman(lives))
-        print("Incorrect guesses: ", incorrect_guess)
+
+        print("The word is: ", word, "\n")
+        print(f"Lives Left: {lives}")
+        print("Incorrect guesses: ", incorrect_guess, "\n")
 
         if "_" not in word:
             game_over = True
             player_won = True
             break
 
+        print("...............................\n")
         guess = input("Guess a letter or word: ").upper()
 
         if guess.isalpha() and len(guess) == 1:
@@ -134,8 +136,9 @@ def play_hangman():
                 print(guess, "is not in the word")
                 incorrect_guess.append(guess)
                 lives -= 1
+                print(display_hangman(lives))
             else:
-                print("Great! you made a correct guess")
+                print("Great! you made a correct guess\n")
                 correct_guess.append(guess)
         elif guess.isalpha() and len(guess) == len(full_word):
             if guess == full_word:
@@ -149,6 +152,7 @@ def play_hangman():
                 print("Incorrect guess")
                 incorrect_guess.append(guess)
                 lives -= 1
+                print(display_hangman(lives))
         else:
             print("Please make a valid guess")
 
@@ -163,7 +167,7 @@ def play_hangman():
             play_hangman()
             break
         if keep_playing == "N":
-            print("Thank you for playing!")
+            print("Thank you for playing!\n")
             update_leaderboard()
             leader_board()
     else:
@@ -187,17 +191,25 @@ def leader_board():
     score.sort((2, 'des'))
     data = score.get('A1:B6')
     print(*data, sep="\n")
+    print("\n")
 
 
 def end_game():
     """
-    Gisves the user option to start game or quit.
+    Gives the user option to start game or quit.
     """
-    if input("Would you like to start game? Y/N:").upper() == "Y":
-        print("Starting game... \n")
-        username_validator()
-    else:
-        print("Thankyou for playing!")
+    while True:
+        continue_game = input("Would you like to start game? Y/N:").upper()
+        try:
+            if continue_game == "Y":
+                print("Starting game... \n")
+                username_validator()
+                break
+            elif continue_game == "N":
+                print("Thankyou for playing! Hope to see you again\n")
+                break
+        except ValueError as e:
+            print(f"Invalid entry: {e}. Please try again!\n")
 
 
 def display_hangman(lives):
@@ -287,4 +299,5 @@ def main():
     start_game()
 
 
+print("Welcome to a game of hangman! \n")
 main()
