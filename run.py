@@ -185,8 +185,8 @@ def leader_board():
     Display the user scores
     """
     score.sort((2, 'des'))
-    data = score.get('A2:B6')
-    print(data)
+    data = score.get('A1:B6')
+    print(*data, sep="\n")
 
 
 def end_game():
