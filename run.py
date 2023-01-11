@@ -23,7 +23,8 @@ def leader_board():
     """
     Display the user scores
     """
-    data = score.get_all_values()
+    score.sort((2, 'des'))
+    data = score.get('A2:B6')
     print(data)
 
 
@@ -168,6 +169,7 @@ def play_hangman():
             break
         if keep_playing == "N":
             print("Thank you for playing!")
+            update_leaderboard()
     else:
         print("Sorry, you lost! The correct word was: " + full_word)
         print(f"Total score: {points}")
@@ -175,7 +177,7 @@ def play_hangman():
 
 def update_leaderboard():
     """
-    Updates the score sheet with total score
+    Updates the score sheet with username and their total score
     """
     update = [username, points]
     score.insert_row(update, 2)
@@ -278,7 +280,6 @@ def main():
     """
     start_game()
     leader_board()
-    update_leaderboard()
 
 
 main()
