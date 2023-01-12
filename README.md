@@ -10,3 +10,16 @@ The live link to the site: [Live Link to the site]()
 ![Mockup screenshot]()
 
 ![Flowchart]()
+
+## __Technologies Used__
+
+### Languages Used
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) was the only language used to create the program.
+
+### Frameworks, Libraries and Programs Used
+- [random](https://docs.python.org/3/library/random.html) was used to generate a random word from the list of words.
+- [gspread](https://docs.gspread.org/en/v5.7.0/) was used to store the players name and points. It is used to display the top 5 highscore in the leaderboard.
+- [Smartdraw](https://www.smartdraw.com/flowchart/flowchart-maker.htm) was used to create the flowchart.
+- [Git](https://git-scm.com/) was used for version control.
+- [Github](https://github.com/) was used to save and store the project's code.
+
