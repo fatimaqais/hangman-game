@@ -54,7 +54,7 @@ def username_validator():
     global username
     username = ''
     while True:
-        username = input("Please enter a username to play: ")
+        username = input("Please enter a username to play:\n")
         if username.isalpha() and len(username) >= 3 and len(username) <= 10:
             print(f"Hello {username}! Let's start the game\n")
             break
@@ -73,7 +73,7 @@ def start_game():
     """
     print("Please select an option: 1, 2 or 3\n")
     print("1.Start Game\n2.Rules \n3.Highscores \n")
-    option = input("Enter a number: ")
+    option = input("Enter a number:\n")
     print("\n")
     if option == '1':
         print("Starting game...")
@@ -127,7 +127,7 @@ def play_hangman():
             break
 
         print("...............................\n")
-        guess = input("Guess a letter or word: ").upper()
+        guess = input("Guess a letter or word:\n").upper()
 
         if guess.isalpha() and len(guess) == 1:
             if guess in correct_guess or guess in incorrect_guess:
@@ -157,10 +157,10 @@ def play_hangman():
             print("Please make a valid guess")
 
     if player_won:
-        print("You won! \n")
+        print("You won!\n")
         points += 10
         print(f"Total score: {points}")
-        keep_playing = input("Would you like to keep playing? Y/N: ").upper()
+        keep_playing = input("Would you like to keep playing? Y/N:\n").upper()
         while keep_playing == "Y":
             clear_terminal()
             random_word = get_random_words()
@@ -171,8 +171,8 @@ def play_hangman():
             update_leaderboard()
             leader_board()
     else:
-        print("Sorry, you lost! The correct word was: " + full_word)
-        print(f"Total score: {points}")
+        print("Sorry, you lost! The correct word was: " + full_word, '\n')
+        print(f"Total score: {points}\n")
         leader_board()
 
 
@@ -199,7 +199,7 @@ def end_game():
     Gives the user option to start game or quit.
     """
     while True:
-        continue_game = input("Would you like to start game? Y/N:").upper()
+        continue_game = input("Would you like to start game? Y/N:\n").upper()
         try:
             if continue_game == "Y":
                 print("Starting game... \n")
@@ -208,8 +208,10 @@ def end_game():
             elif continue_game == "N":
                 print("Thankyou for playing! Hope to see you again\n")
                 break
-        except ValueError as e:
-            print(f"Invalid entry: {e}. Please try again!\n")
+            else:
+                raise ValueError
+        except ValueError:
+            print("Invalid entry. Please try again!\n")
 
 
 def display_hangman(lives):
