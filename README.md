@@ -40,7 +40,25 @@ I have manually tested this project by doing the following:
 ### Bugs
 - Solved Bugs
     - When the player guessed the full word, the game was accepting it as a correct guess when it was wrong eg. the word was 'cat' but if the user guessed 'bat', the game would accept it based on the matching length. This was fixed by checking if the length and characters, both matched the word.
-    - The game was allowing the user to enter any character for yes and no option, Y/N. This was fixed by putting the options in a while loop so only the option would keep repeating until the user picked either 'Y' or 'N'.
+    - The game was allowing the user to enter any character for the yes and no option, Y/N. This was fixed by putting the options in a while loop so only the option would keep repeating until the user picked either 'Y' or 'N'.
 
 - Unsolved Bugs
     - No bugs remaining.
+
+## __Deployment__
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+- Before going on Heroku, these are the steps that I followed:
+    - We neede heroku to install some dependencies. The list of dependencies go in the requirements.txt file.
+    - To create our list of requirements, we  use the following command in the terminal: 'Pip3 freeze > requirements.txt'.
+    - We need to then commit and push these changes to GitHub.
+    - After this, set up your account on Heroku.
+
+- Deployment steps are as follows, after account setup:
+    - Select New in the top-right corner of your Heroku Dashboard, and select Create a new app from the dropdown menu.
+    - Choose a unique app name and then set the region to Europe, then click on create an app.
+    - Go on settings, click Reveal Config Vars, and set the value of KEY to CREDS, and for the value add the data from your creds.json file then select add.
+    - Scroll down to add Buildpacks. Select Python first, then Node.js second as the order of the buildpacks is important.
+    - Now, go on deploy and select GitHub in the deployment method. Search for your repository and then click connect.
+    - Scroll down to the automatic and manual deploy section and select either one of them. Once deployment is finished, click view button and run the program.
