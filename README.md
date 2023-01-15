@@ -99,8 +99,8 @@ I have manually tested this project by doing the following:
 This project was deployed using Code Institute's mock terminal for Heroku.
 
 - Before going on Heroku, these are the steps that I followed:
-    - We neede heroku to install some dependencies. The list of dependencies go in the requirements.txt file.
-    - To create our list of requirements, we  use the following command in the terminal: 'Pip3 freeze > requirements.txt'.
+    - We need Heroku to install some dependencies. The list of dependencies goes in the requirements.txt file.
+    - To create our list of requirements, we use the following command in the terminal: 'Pip3 freeze > requirements.txt'.
     - We need to then commit and push these changes to GitHub.
     - After this, set up your account on Heroku.
 
@@ -110,4 +110,10 @@ This project was deployed using Code Institute's mock terminal for Heroku.
     - Go on settings, click Reveal Config Vars, and set the value of KEY to CREDS, and for the value add the data from your creds.json file then select add.
     - Scroll down to add Buildpacks. Select Python first, then Node.js second as the order of the buildpacks is important.
     - Now, go on deploy and select GitHub in the deployment method. Search for your repository and then click connect.
-    - Scroll down to the automatic and manual deploy section and select either one of them. Once deployment is finished, click view button and run the program.
+    - Scroll down to the automatic and manual deploy section and select either one of them. Once deployment is finished, click the view button and run the program.
+
+## __Credits__
+
+- The code for the hangman image was taken from this [youtube](https://www.youtube.com/watch?v=m4nEnsavl6w) link.
+- The code to clear terminal was taken from [stack overflow](https://stackoverflow.com/questions/2084508/clear-terminal-in-python). This was used to reduce clutter in the terminal and improve the UX.
+- The flowchart was created using [smartdraw](https://www.smartdraw.com/flowchart/flowchart-maker.htm)
