@@ -27,6 +27,38 @@ The live link to the site: [Live Link to the site](https://hangman-game-py.herok
 ![Start Game](assets/images/start-game.png)
 
 -__Hangman Game__
+- When the game has started, the user is shown blank lines to display the missing letters. They are shown how many lives they have and the empty list of incorrect guesses as the user has not yet made any guesses. 
+- Once the user has entered their guess, they are shown a message which tells them if their guess was correct or not. If it is wrong they are shown an image of a man forming.
+
+![part 1](assets/images/hangman1.png)
+
+- The incorrect list is updated with the guessed letter. Their lives go down by one with each incorrect guess.
+
+![part 2](assets/images/hangman2.png)
+
+- If user has made a correct guess the blank lines are replaced with the correct letter. 
+
+![part 3](assets/images/hangman3.png)
+![part 4](assets/images/hangman4.png)
+
+- Once the user has guessed the full word they are shown how many lives they were left with and their incorrect guesses. A winning message is displayed and their points are shown to them.
+
+![part 5](assets/images/hangman5.png)
+
+- The user is then given the option to play again to increase their score or they can enter 'N' and quit.
+- The game doesn't accept invalid inputs and only accepts "Y" or "N" as an option.
+
+![keep playing option](assets/images/keep-playing.png)
+
+- After getting the second word correctly your score adds up to 20. The score increases by 10 points for every correct word.
+- The user is asked again if they would like to continue playing.
+
+![Score](assets/images/score.png)
+![Second round](assets/images/continue-playing.png)
+
+- If the user wishes to stop playing and enters 'N'. The game finishes and a Thank you message is displayed. The leaderboard is updated and the high scores are displayed for the user.
+
+![Finish game](assets/images/stop-playing.png)
 
 ## __Technologies Used__
 
