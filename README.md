@@ -106,6 +106,8 @@ I have manually tested this project by doing the following:
 - PEP8
     - No errors were returned from [PEP8](https://pep8ci.herokuapp.com/)
 
+    ![PEP8 Testing](assets/images/testing.png)
+
 ### Bugs
 - Solved Bugs
     - When the player guessed the full word, the game was accepting it as a correct guess when it was wrong eg. the word was 'cat' but if the user guessed 'bat', the game would accept it based on the matching length. This was fixed by checking if the length and characters, both matched the word.
