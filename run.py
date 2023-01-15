@@ -56,6 +56,7 @@ def username_validator():
     while True:
         username = input("Please enter a username to play:\n")
         if username.isalpha() and len(username) >= 3 and len(username) <= 10:
+            print("\n")
             print(f"Hello {username}! Let's start the game\n")
             break
         else:
@@ -76,7 +77,8 @@ def start_game():
     option = input("Enter a number:\n")
     print("\n")
     if option == '1':
-        print("Starting game...")
+        clear_terminal()
+        print("Starting game...\n")
         username_validator()
     elif option == '2':
         print("1. You will be given a random word to guess.")
@@ -115,7 +117,7 @@ def play_hangman():
             if letter in correct_guess:
                 word += letter
             else:
-                word += "_"
+                word += " _ "
 
         print("The word is: ", word, "\n")
         print(f"Lives Left: {lives}")
@@ -126,7 +128,6 @@ def play_hangman():
             player_won = True
             break
 
-        print("...............................\n")
         guess = input("Guess a letter or word:\n").upper()
 
         if guess.isalpha() and len(guess) == 1:
@@ -156,20 +157,27 @@ def play_hangman():
         else:
             print("Please make a valid guess")
 
+        print("...............................\n")
+
     if player_won:
         print("You won!\n")
+        print("The correct word was:" + full_word, "\n")
         points += 10
         print(f"Total score: {points}")
-        keep_playing = input("Would you like to keep playing? Y/N:\n").upper()
-        while keep_playing == "Y":
-            clear_terminal()
-            random_word = get_random_words()
-            play_hangman()
-            break
-        if keep_playing == "N":
-            print("Thank you for playing!\n")
-            update_leaderboard()
-            leader_board()
+        while True:
+            keep_playing = input("Do you wish to keep playing? Y/N:\n").upper()
+            if keep_playing == "Y":
+                clear_terminal()
+                random_word = get_random_words()
+                play_hangman()
+                break
+            elif keep_playing == "N":
+                print("Thank you for playing!\n")
+                update_leaderboard()
+                leader_board()
+                break
+            else:
+                print("Please enter 'Y' or 'N'")
     else:
         print("Sorry, you lost! The correct word was: " + full_word, '\n')
         print(f"Total score: {points}\n")
@@ -190,6 +198,7 @@ def leader_board():
     """
     score.sort((2, 'des'))
     data = score.get('A1:B6')
+    print("The Top 5 Highscores Are:\n")
     print(*data, sep="\n")
     print("\n")
 
@@ -203,10 +212,11 @@ def end_game():
         try:
             if continue_game == "Y":
                 print("Starting game... \n")
+                clear_terminal()
                 username_validator()
                 break
             elif continue_game == "N":
-                print("Thankyou for playing! Hope to see you again\n")
+                print("Thankyou for playing! Hope to see you again.\n")
                 break
             else:
                 raise ValueError
