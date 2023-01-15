@@ -5,11 +5,28 @@ Users can start the game after they have entered their username for the game. Us
 
 If the user guesses a word correctly, they gain 10 points. They can continue to keep guessing to be placed in the top 5 players in the leaderboard. The more word they guess without losing, the higher their points will be. Once the player runs out of life and fails to guess the word, the game ends and the player has to start a new game. Once the game has ended, the leaderboard is shown to the user to check if they've made it in the top 5.
 
-The live link to the site: [Live Link to the site]()
+The live link to the site: [Live Link to the site](https://hangman-game-py.herokuapp.com/)
 
-![Mockup screenshot]()
+- __Flowchart__
+![Flowchart](assets/images/flowchart.png)
+- The flowchart was used to plan the game so it would be easier to follow the steps to write the code for it.
 
-![Flowchart]()
+## __Features__
+### Existing Features
+-__Welcome page__
+- When the user runs the program a welcome message is displayed to them, then they are asked to pick one 0f the 3 options:
+    1. Start Game
+    2. Rules
+    3. Highscores
+
+![Welcome page](assets/images/start-options.png)
+
+-__Start Game__
+- If the user chooses to start the game, they are instructed to enter a username. If the user enters an invalid username, the game tells them to enter a valid username which is atleat 3-10 characters long. The game also doesn't accept empty spaces as a username.
+
+![Start Game](assets/images/start-game.png)
+
+-__Hangman Game__
 
 ## __Technologies Used__
 
