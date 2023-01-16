@@ -89,6 +89,7 @@ The live link to the site: [Live Link to the site](https://hangman-game-py.herok
 
 - [random](https://docs.python.org/3/library/random.html) was used to generate a random word from the list of words.
 - [gspread](https://docs.gspread.org/en/v5.7.0/) was used to store the player's name and points. It is used to display the top 5 high scores on the leaderboard.
+- [os](https://docs.python.org/3/library/os.html) was used to write the clear_terminal function. This was added to prevent the terminal from becoming too crowded and improve the user experience.
 - [Smartdraw](https://www.smartdraw.com/flowchart/flowchart-maker.htm) was used to create the flowchart.
 - [Git](https://git-scm.com/) was used for version control.
 - [Github](https://github.com/) was used to save and store the project's code.
@@ -101,6 +102,7 @@ I have manually tested this project by doing the following:
 - I gave invalid inputs, the game doesn't accept them and asks the user to enter a valid input.
 - When given an integer while guessing the word, the game doesn't accept the input and tells the user to enter a letter or guess the full word.
 - The game checks that the username is 3-10 characters long.
+- The game was tested on different browsers and it works fine on chrome, edge and firfox.
 
 ### Validator Testing
 - PEP8
