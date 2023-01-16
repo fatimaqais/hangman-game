@@ -209,18 +209,15 @@ def end_game():
     """
     while True:
         continue_game = input("Would you like to start game? Y/N:\n").upper()
-        try:
-            if continue_game == "Y":
-                print("Starting game... \n")
-                clear_terminal()
-                username_validator()
-                break
-            elif continue_game == "N":
-                print("Thankyou for playing! Hope to see you again.\n")
-                break
-            else:
-                raise ValueError
-        except ValueError:
+        if continue_game == "Y":
+            print("Starting game... \n")
+            clear_terminal()
+            username_validator()
+            break
+        elif continue_game == "N":
+            print("Thankyou for playing! Hope to see you again.\n")
+            break
+        else:
             print("Invalid entry. Please try again!\n")
 
 
